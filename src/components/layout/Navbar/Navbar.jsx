@@ -4,7 +4,7 @@ import { ArrowRight, Menu, X } from 'lucide-react';
 import logoImg from '../../../assets/images/logo.png';
 
 export const Navbar = () => {
-  const [activeItem, setActiveItem] = useState('Home');
+  const [activeItem, setActiveItem] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -42,8 +42,9 @@ export const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" onClick={() => handleNavClick('Home')} className="flex items-center">
-          <img src={logoImg} alt="DoQuad Logo" className="h-10 md:h-12 w-auto object-contain" />
+        <Link to="/" onClick={() => handleNavClick('Home')} className="flex items-center gap-2">
+          <img src={logoImg} alt="DoQuad Logo" className="h-8 md:h-10 w-auto object-contain" />
+          <span className="text-2xl font-extrabold text-[#031737] tracking-tight">doquad</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -105,7 +106,10 @@ export const Navbar = () => {
       {/* Mobile Drawer menu */}
       <div className={`lg:hidden fixed inset-y-0 right-0 z-40 w-3/4 max-w-sm bg-white shadow-2xl flex flex-col p-6 transition-transform duration-300 transform ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex justify-between items-center mb-8">
-          <img src={logoImg} alt="DoQuad Logo" className="h-9 w-auto object-contain" />
+          <div className="flex items-center gap-2">
+            <img src={logoImg} alt="DoQuad Logo" className="h-8 w-auto object-contain" />
+            <span className="text-2xl font-extrabold text-[#031737] tracking-tight">doquad</span>
+          </div>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-slate-800 hover:text-primary focus:outline-none"

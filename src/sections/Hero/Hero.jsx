@@ -42,7 +42,7 @@ export const Hero = () => {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-8">
             <a
               href="/contact"
-              className="bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3.5 rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer text-[15px]"
+              className="bg-transparent border border-primary text-primary hover:bg-primary hover:text-white hover:border-transparent font-semibold px-8 py-3.5 rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-sm active:scale-95 cursor-pointer text-[15px]"
             >
               Start Your Project
               <ArrowRight size={18} />
@@ -50,7 +50,7 @@ export const Hero = () => {
             
             <a
               href="/portfolio"
-              className="bg-white hover:bg-primary border border-primary/30 hover:border-transparent text-primary hover:text-white font-semibold px-8 py-3.5 rounded-full flex items-center justify-center gap-3 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 cursor-pointer text-[15px] group"
+              className="bg-white border border-slate-200 hover:border-transparent text-slate-800 hover:text-white hover:bg-primary font-semibold px-8 py-3.5 rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-sm active:scale-95 cursor-pointer text-[15px] group"
             >
               See Our Work
               <span className="flex items-center justify-center w-6 h-6 rounded-full bg-slate-900 text-white group-hover:bg-white group-hover:text-primary transition-colors duration-300">
@@ -78,7 +78,7 @@ export const Hero = () => {
 
         {/* Right Graphic Column */}
         <div className="lg:col-span-7 flex justify-center items-center w-full relative">
-          <div className="w-full max-w-[680px] relative pointer-events-none sphere-float-slow">
+          <div className="w-full max-w-[680px] relative pointer-events-none">
             {/* Visual glow element behind the mockup */}
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-blue-400/5 rounded-full filter blur-[50px] transform scale-75 -z-10" />
             <img 
