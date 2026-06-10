@@ -1,6 +1,6 @@
 import React from 'react';
 import { Check } from 'lucide-react';
-import thirdImg from '../../assets/images/third.png';
+import thirdImg from '../../assets/images/third-removebg-preview.png';
 
 export const WhyChooseUs = () => {
   const features = [

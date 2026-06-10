@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Contact = () => {
-  return <section>Contact Section</section>;
+  return null;
 };
 
 export default Contact;
