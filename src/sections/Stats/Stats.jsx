@@ -1,6 +1,87 @@
 import React from 'react';
 import { Laptop, Users, Trophy, Headphones } from 'lucide-react';
-import globImg from '../../assets/images/glob.png';
+import Globe3D from '@/components/ui/3d-globe';
+
+const sampleMarkers = [
+  {
+    lat: 40.7128,
+    lng: -74.006,
+    src: "https://assets.aceternity.com/avatars/1.webp",
+    label: "New York",
+  },
+  {
+    lat: 51.5074,
+    lng: -0.1278,
+    src: "https://assets.aceternity.com/avatars/2.webp",
+    label: "London",
+  },
+  {
+    lat: 35.6762,
+    lng: 139.6503,
+    src: "https://assets.aceternity.com/avatars/3.webp",
+    label: "Tokyo",
+  },
+  {
+    lat: -33.8688,
+    lng: 151.2093,
+    src: "https://assets.aceternity.com/avatars/4.webp",
+    label: "Sydney",
+  },
+  {
+    lat: 48.8566,
+    lng: 2.3522,
+    src: "https://assets.aceternity.com/avatars/5.webp",
+    label: "Paris",
+  },
+  {
+    lat: 28.6139,
+    lng: 77.209,
+    src: "https://assets.aceternity.com/avatars/6.webp",
+    label: "New Delhi",
+  },
+  {
+    lat: 55.7558,
+    lng: 37.6173,
+    src: "https://assets.aceternity.com/avatars/7.webp",
+    label: "Moscow",
+  },
+  {
+    lat: -22.9068,
+    lng: -43.1729,
+    src: "https://assets.aceternity.com/avatars/8.webp",
+    label: "Rio de Janeiro",
+  },
+  {
+    lat: 31.2304,
+    lng: 121.4737,
+    src: "https://assets.aceternity.com/avatars/9.webp",
+    label: "Shanghai",
+  },
+  {
+    lat: 25.2048,
+    lng: 55.2708,
+    src: "https://assets.aceternity.com/avatars/10.webp",
+    label: "Dubai",
+  },
+  {
+    lat: -34.6037,
+    lng: -58.3816,
+    src: "https://assets.aceternity.com/avatars/11.webp",
+    label: "Buenos Aires",
+  },
+  {
+    lat: 1.3521,
+    lng: 103.8198,
+    src: "https://assets.aceternity.com/avatars/12.webp",
+    label: "Singapore",
+  },
+  {
+    lat: 37.5665,
+    lng: 126.978,
+    src: "https://assets.aceternity.com/avatars/13.webp",
+    label: "Seoul",
+  },
+];
 
 export const Stats = () => {
   const stats = [
@@ -35,8 +116,8 @@ export const Stats = () => {
       {/* Curved wave transition at the top */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none transform -translate-y-[99%]">
         <svg className="relative block w-full h-[60px] md:h-[90px]" viewBox="0 0 1440 120" preserveAspectRatio="none">
-          <path 
-            d="M0,96 C360,128 720,140 1080,105 C1260,88 1380,44 1440,20 L1440,120 L0,120 Z" 
+          <path
+            d="M0,96 C360,128 720,140 1080,105 C1260,88 1380,44 1440,20 L1440,120 L0,120 Z"
             fill="#020b18"
           ></path>
         </svg>
@@ -63,17 +144,23 @@ export const Stats = () => {
           </div>
 
           {/* Central Rotating Globe (Desktop middle, mobile centered between rows) */}
-          <div className="col-span-2 lg:col-span-1 flex justify-center items-center py-6 lg:py-0 w-full order-first lg:order-none">
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
-              {/* Globe glowing shadow rings */}
-              <div className="absolute inset-0 bg-primary/10 rounded-full filter blur-md animate-pulse" />
-              <div className="absolute w-[120%] h-[120%] border border-primary/5 rounded-full animate-ping pointer-events-none opacity-20" style={{ animationDuration: '4s' }} />
+          <div className="col-span-2 lg:col-span-1 flex justify-center items-center py-6 lg:py-0 w-full order-first lg:order-none relative z-30">
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px] flex items-center justify-center transform -translate-y-12 sm:-translate-y-16 lg:-translate-y-24 xl:-translate-y-28">
+              {/* Globe glowing shadow rings in the background */}
+              <div className="absolute inset-0 bg-primary/10 rounded-full filter blur-xl animate-pulse pointer-events-none scale-75" />
               
-              {/* Rotating Globe Image */}
-              <img 
-                src={globImg} 
-                alt="Rotating Globe Graphic" 
-                className="w-full h-full object-contain globe-rotate z-10 drop-shadow-[0_0_25px_rgba(15,95,253,0.3)]"
+              <Globe3D
+                markers={sampleMarkers}
+                config={{
+                  atmosphereColor: "#4da6ff",
+                  atmosphereIntensity: 2,
+                  showAtmosphere: true,
+                  bumpScale: 5,
+                  autoRotateSpeed: 0.8,
+                  enableZoom: false,
+                  enablePan: false,
+                }}
+                className="w-full h-full"
               />
             </div>
           </div>
