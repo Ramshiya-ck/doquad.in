@@ -9,8 +9,8 @@ export const CTA = () => {
       <div className="absolute top-[20%] left-[20%] w-[320px] h-[320px] bg-primary/25 rounded-full filter blur-[80px] pointer-events-none z-0" />
       <div className="absolute bottom-[20%] right-[20%] w-[280px] h-[280px] bg-blue-500/15 rounded-full filter blur-[70px] pointer-events-none z-0" />
       
-      {/* Glassy Container Box */}
-      <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#0a1e3a]/75 via-[#041226]/60 to-[#010712]/75 backdrop-blur-xl rounded-[2.5rem] p-10 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-[0_20px_50px_rgba(3,17,39,0.2)] border border-white/[0.1] z-10">
+      {/* Container Box */}
+      <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#0c254e] via-[#051630] to-[#010a16] rounded-[2.5rem] p-10 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-[0_25px_60px_rgba(15,95,253,0.22)] border border-white/[0.08] z-10">
         
         {/* Left Column - Content */}
         <div className="flex flex-col items-start text-left max-w-xl z-10">

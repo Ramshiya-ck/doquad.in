@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { X, Mail, Phone, MapPin, ArrowRight, Facebook, Linkedin, Twitter, Instagram } from 'lucide-react';
 
@@ -10,11 +10,37 @@ export const ContactPage = () => {
     navigate(-1);
   };
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simple form submit feedback
-    alert('Thank you for contacting us! We will get back to you shortly.');
-    navigate(-1);
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    // Web3Forms API parameters
+    formData.append("access_key", "a2a62223-5b4c-46be-b74a-99a3d2be3f38");
+    formData.append("from_name", "DoQuad Website Contact Form");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Thank you for contacting us! We will get back to you shortly.");
+        navigate(-1);
+      } else {
+        alert(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -32,7 +58,7 @@ export const ContactPage = () => {
       {/* Contact Glass Card */}
       <div 
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-4xl bg-slate-900/80 border border-white/10 rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md overflow-hidden grid grid-cols-1 md:grid-cols-12 relative cursor-default"
+        className="w-full max-w-4xl bg-gradient-to-br from-[#0a1e3a]/85 via-[#031127]/75 to-[#010712]/85 border border-white/[0.12] rounded-[2.5rem] shadow-[0_25px_60px_-12px_rgba(3,17,39,0.45)] backdrop-blur-xl overflow-hidden grid grid-cols-1 md:grid-cols-12 relative cursor-default"
       >
         
         {/* Close Button */}
@@ -117,6 +143,7 @@ export const ContactPage = () => {
             <div className="flex flex-col">
               <input
                 type="text"
+                name="name"
                 required
                 placeholder="Full Name"
                 className="bg-white/5 border border-white/10 text-white placeholder-slate-400 rounded-xl px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary w-full transition-all duration-300"
@@ -127,6 +154,7 @@ export const ContactPage = () => {
             <div className="flex flex-col">
               <input
                 type="email"
+                name="email"
                 required
                 placeholder="Email Address"
                 className="bg-white/5 border border-white/10 text-white placeholder-slate-400 rounded-xl px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary w-full transition-all duration-300"
@@ -137,6 +165,7 @@ export const ContactPage = () => {
             <div className="flex flex-col">
               <input
                 type="text"
+                name="subject"
                 required
                 placeholder="Subject"
                 className="bg-white/5 border border-white/10 text-white placeholder-slate-400 rounded-xl px-4 py-3 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary w-full transition-all duration-300"
@@ -146,6 +175,7 @@ export const ContactPage = () => {
             {/* Message Area */}
             <div className="flex flex-col">
               <textarea
+                name="message"
                 rows="4"
                 required
                 placeholder="Tell us about your project..."
@@ -156,9 +186,10 @@ export const ContactPage = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-primary hover:bg-primary-dark text-white font-semibold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-98 cursor-pointer mt-2 text-sm"
+              disabled={isSubmitting}
+              className="bg-primary hover:bg-primary-dark disabled:bg-primary/50 text-white font-semibold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-98 disabled:pointer-events-none cursor-pointer mt-2 text-sm"
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
               <ArrowRight size={16} />
             </button>
           </form>
