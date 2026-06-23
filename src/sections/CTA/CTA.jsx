@@ -4,19 +4,22 @@ import envelopeImg from '../../assets/images/envelope-removebg-preview.png';
 
 export const CTA = () => {
   return (
-    <section className="bg-gradient-to-b from-white via-white to-[#020b18] pt-16 pb-0 px-6 md:px-12 relative z-10">
+    <section className="bg-white pt-16 pb-28 lg:pb-36 px-6 md:px-12 relative overflow-hidden z-10">
       {/* Container Box */}
-      <div className="max-w-7xl mx-auto bg-gradient-to-r from-[#031737] to-[#010915] rounded-[2.5rem] p-10 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl border border-white/5">
+      <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#0a1e3a] via-[#041226] to-[#010712] rounded-[2.5rem] p-10 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-[0_20px_50px_rgba(15,95,253,0.18)] border border-white/[0.08]">
+        {/* Glow decorative blobs */}
+        <div className="absolute top-[-30%] right-[-10%] w-[320px] h-[320px] bg-primary/20 rounded-full filter blur-[70px] pointer-events-none" />
+        <div className="absolute bottom-[-30%] left-[-10%] w-[260px] h-[260px] bg-blue-500/10 rounded-full filter blur-[60px] pointer-events-none" />
         
         {/* Left Column - Content */}
         <div className="flex flex-col items-start text-left max-w-xl z-10">
           {/* Badge */}
-          <div className="flex items-center gap-2 bg-primary/20 border border-primary/30 px-3.5 py-1 rounded-full text-primary font-bold text-[12px] tracking-wider uppercase">
+          <div className="flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full text-primary font-semibold text-[13px] tracking-wide mb-6">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             Let's Work Together
           </div>
           
-          <h2 className="text-3xl md:text-[40px] font-extrabold mt-5 mb-3 leading-tight tracking-tight">
+          <h2 className="text-3xl md:text-[40px] font-extrabold mt-2 mb-3 leading-tight tracking-tight">
             Have A Project In Mind?
           </h2>
           
@@ -26,19 +29,21 @@ export const CTA = () => {
         </div>
 
         {/* Center Mockup - Floating 3D Envelope */}
-        <div className="w-40 h-40 md:w-48 md:h-48 flex items-center justify-center pointer-events-none lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 sphere-float-slow z-10">
-          <img
-            src={envelopeImg}
-            alt="3D Floating Mail Envelope"
-            className="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(15,95,253,0.3)]"
-          />
+        <div className="w-40 h-40 md:w-48 md:h-48 flex items-center justify-center pointer-events-none lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-10">
+          <div className="sphere-float-slow w-full h-full flex items-center justify-center">
+            <img
+              src={envelopeImg}
+              alt="3D Floating Mail Envelope"
+              className="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(15,95,253,0.35)]"
+            />
+          </div>
         </div>
 
         {/* Right Column - Buttons */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto z-10">
           <a
             href="/contact"
-            className="bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3.5 rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer text-[14px]"
+            className="bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_4px_20px_rgba(15,95,253,0.3)] hover:shadow-[0_10px_25px_rgba(15,95,253,0.45)] hover:-translate-y-0.5 active:scale-95 cursor-pointer text-[14px]"
           >
             Get Free Consultation
             <ArrowRight size={16} />
@@ -46,12 +51,22 @@ export const CTA = () => {
           
           <a
             href="/contact"
-            className="bg-transparent border border-white/20 hover:border-white text-white hover:bg-white hover:text-[#020b18] font-semibold px-6 py-3.5 rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-sm hover:-translate-y-0.5 cursor-pointer text-[14px]"
+            className="bg-white/10 hover:bg-white text-white hover:text-[#020b18] border border-white/10 hover:border-transparent font-semibold px-8 py-4 rounded-full flex items-center justify-center gap-2 transition-all duration-300 shadow-sm hover:-translate-y-0.5 active:scale-95 cursor-pointer text-[14px]"
           >
             Contact Us
             <ArrowRight size={16} />
           </a>
         </div>
+      </div>
+
+      {/* Curved wave transition at the bottom */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
+        <svg className="relative block w-full h-[60px] md:h-[90px]" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path
+            d="M0,96 C360,128 720,140 1080,105 C1260,88 1380,44 1440,20 L1440,120 L0,120 Z"
+            fill="#020b18"
+          ></path>
+        </svg>
       </div>
     </section>
   );
