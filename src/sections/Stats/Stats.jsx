@@ -87,19 +87,19 @@ export const Stats = () => {
   const stats = [
     {
       id: 1,
-      number: '120+',
+      number: '14+',
       label: 'Projects Delivered',
       icon: <Laptop className="text-primary" size={24} />,
     },
     {
       id: 2,
-      number: '60+',
+      number: '11+',
       label: 'Happy Clients',
       icon: <Users className="text-primary" size={24} />,
     },
     {
       id: 3,
-      number: '5+',
+      number: '2+',
       label: 'Years Experience',
       icon: <Trophy className="text-primary" size={24} />,
     },
@@ -112,7 +112,7 @@ export const Stats = () => {
   ];
 
   return (
-    <section className="relative bg-[#020b18] pt-24 pb-16 z-20">
+    <section className="relative bg-[#020b18] pt-16 pb-12 z-20">
       {/* Curved wave transition at the top */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none transform -translate-y-[99%]">
         <svg className="relative block w-full h-[60px] md:h-[90px]" viewBox="0 0 1440 120" preserveAspectRatio="none">
@@ -145,7 +145,7 @@ export const Stats = () => {
 
           {/* Central Rotating Globe (Desktop middle, mobile centered between rows) */}
           <div className="col-span-2 lg:col-span-1 flex justify-center items-center py-6 lg:py-0 w-full order-first lg:order-none relative z-30">
-            <div className="relative w-56 h-5 sm:w-64 sm:h-64 lg:w-[260px] lg:h-[260px] xl:w-[300px] xl:h-[300px] flex items-center justify-center">
+            <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-[260px] lg:h-[260px] xl:w-[300px] xl:h-[300px] flex items-center justify-center">
               {/* Globe glowing shadow rings in the background */}
               <div className="absolute inset-0 bg-[#4da6ff]/8 rounded-full filter blur-xl animate-pulse pointer-events-none scale-50" />
 
@@ -181,6 +181,16 @@ export const Stats = () => {
             <div className="text-slate-400 font-medium text-[13px] sm:text-[14px] transition-colors duration-300 group-hover:text-slate-300">{stats[3].label}</div>
           </div>
         </div>
+      </div>
+
+      {/* Curved wave transition at the bottom (bending inwards) */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none transform translate-y-[99%] z-10">
+        <svg className="relative block w-full h-[60px] md:h-[90px]" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path
+            d="M0,24 C360,-8 720,-20 1080,15 C1260,32 1380,76 1440,100 L1440,0 L0,0 Z"
+            fill="#020b18"
+          ></path>
+        </svg>
       </div>
     </section>
   );
