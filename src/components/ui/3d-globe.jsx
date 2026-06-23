@@ -50,9 +50,9 @@ function Marker({
     return latLngToVector3(marker.lat, marker.lng, radius * 1.001);
   }, [marker.lat, marker.lng, radius]);
 
-  // Top of the line (where the image is) - positioned further out to prevent going inside globe
+  // Top of the line (where the image is) - positioned closer for a cleaner look
   const topPosition = useMemo(() => {
-    return latLngToVector3(marker.lat, marker.lng, radius * 1.18);
+    return latLngToVector3(marker.lat, marker.lng, radius * 1.08);
   }, [marker.lat, marker.lng, radius]);
 
   const lineHeight = topPosition.distanceTo(surfacePosition);
@@ -125,7 +125,7 @@ function Marker({
           transform
           center
           sprite
-          distanceFactor={10}
+          distanceFactor={12}
           style={{
             pointerEvents: isVisible ? "auto" : "none",
             opacity: isVisible ? 1 : 0,
@@ -133,12 +133,12 @@ function Marker({
           }}>
           <div
             className={cn(
-              "cursor-pointer overflow-hidden rounded-full bg-neutral-900 shadow-lg transition-transform duration-200",
-              hovered && "scale-125 shadow-xl ring-1 ring-white/50"
+              "cursor-pointer overflow-hidden rounded-full border border-white/80 bg-neutral-900 shadow-md transition-all duration-200",
+              hovered && "scale-125 shadow-lg border-white ring-2 ring-[#4da6ff]/50"
             )}
             style={{
-              width: "8px",
-              height: "8px",
+              width: "14px",
+              height: "14px",
             }}
             onMouseEnter={handlePointerEnter}
             onMouseLeave={handlePointerLeave}
@@ -224,7 +224,8 @@ function Atmosphere({
   radius,
   color,
   intensity,
-  blur
+  blur,
+  scale = 1.03
 }) {
   // blur controls the fresnel exponent: lower = more diffuse, higher = sharper edge
   // We invert it so higher blur value = more diffuse (lower exponent)
@@ -264,7 +265,7 @@ function Atmosphere({
   }, [color, intensity, fresnelPower]);
 
   return (
-    <mesh scale={[1.12, 1.12, 1.12]}>
+    <mesh scale={[scale, scale, scale]}>
       <sphereGeometry args={[radius, 64, 32]} />
       <primitive object={atmosphereMaterial} attach="material" />
     </mesh>
@@ -309,7 +310,8 @@ function Scene({
           radius={config.radius}
           color={config.atmosphereColor}
           intensity={config.atmosphereIntensity}
-          blur={config.atmosphereBlur} />
+          blur={config.atmosphereBlur}
+          scale={config.atmosphereScale} />
       )}
       {/* Controls */}
       <OrbitControls
@@ -356,6 +358,7 @@ const defaultConfig = {
   atmosphereColor: "#4da6ff",
   atmosphereIntensity: 0.5,
   atmosphereBlur: 2,
+  atmosphereScale: 1.03,
   bumpScale: 1,
   autoRotateSpeed: 0.3,
   enableZoom: false,
@@ -366,8 +369,8 @@ const defaultConfig = {
   markerSize: 0.06,
   showWireframe: false,
   wireframeColor: "#4a9eff",
-  ambientIntensity: 0.6,
-  pointLightIntensity: 1.5,
+  ambientIntensity: 0.8,
+  pointLightIntensity: 2.0,
   backgroundColor: null,
 };
 

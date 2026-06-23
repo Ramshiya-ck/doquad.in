@@ -63,12 +63,12 @@ export const Services = () => {
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-inner ${service.bgClass}`}>
                   {service.icon}
                 </div>
-                
+
                 {/* Title */}
                 <h3 className="text-lg font-bold text-slate-800 mb-3 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
-                
+
                 {/* Description */}
                 <p className="text-slate-500 text-[14px] leading-relaxed mb-6">
                   {service.description}

@@ -126,35 +126,33 @@ export const Stats = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4 items-center justify-items-center">
           {/* Stat 1 */}
-          <div className="flex flex-col items-center text-center w-full">
-            <div className="w-14 h-14 rounded-2xl bg-[#0c1a30] border border-white/5 flex items-center justify-center mb-4 shadow-inner">
+          <div className="group flex flex-col items-center text-center w-full p-4 rounded-3xl transition-all duration-300 hover:bg-[#0c1a30]/30 border border-transparent hover:border-white/[0.02]">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-b from-[#0c1a30] to-[#061020] border border-white/[0.06] flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(59,130,246,0.05)] group-hover:scale-110 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
               {stats[0].icon}
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{stats[0].number}</div>
-            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px]">{stats[0].label}</div>
+            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">{stats[0].number}</div>
+            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px] transition-colors duration-300 group-hover:text-slate-300">{stats[0].label}</div>
           </div>
 
           {/* Stat 2 */}
-          <div className="flex flex-col items-center text-center w-full">
-            <div className="w-14 h-14 rounded-2xl bg-[#0c1a30] border border-white/5 flex items-center justify-center mb-4 shadow-inner">
+          <div className="group flex flex-col items-center text-center w-full p-4 rounded-3xl transition-all duration-300 hover:bg-[#0c1a30]/30 border border-transparent hover:border-white/[0.02]">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-b from-[#0c1a30] to-[#061020] border border-white/[0.06] flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(59,130,246,0.05)] group-hover:scale-110 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
               {stats[1].icon}
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{stats[1].number}</div>
-            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px]">{stats[1].label}</div>
+            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">{stats[1].number}</div>
+            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px] transition-colors duration-300 group-hover:text-slate-300">{stats[1].label}</div>
           </div>
 
           {/* Central Rotating Globe (Desktop middle, mobile centered between rows) */}
           <div className="col-span-2 lg:col-span-1 flex justify-center items-center py-6 lg:py-0 w-full order-first lg:order-none relative z-30">
-            <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[350px] lg:h-[350px] xl:w-[400px] xl:h-[400px] flex items-center justify-center transform -translate-y-12 sm:-translate-y-16 lg:-translate-y-24 xl:-translate-y-28">
+            <div className="relative w-56 h-5 sm:w-64 sm:h-64 lg:w-[260px] lg:h-[260px] xl:w-[300px] xl:h-[300px] flex items-center justify-center">
               {/* Globe glowing shadow rings in the background */}
-              <div className="absolute inset-0 bg-primary/10 rounded-full filter blur-xl animate-pulse pointer-events-none scale-75" />
-              
+              <div className="absolute inset-0 bg-[#4da6ff]/8 rounded-full filter blur-xl animate-pulse pointer-events-none scale-50" />
+
               <Globe3D
                 markers={sampleMarkers}
                 config={{
-                  atmosphereColor: "#4da6ff",
-                  atmosphereIntensity: 2,
-                  showAtmosphere: true,
+                  showAtmosphere: false,
                   bumpScale: 5,
                   autoRotateSpeed: 0.8,
                   enableZoom: false,
@@ -166,21 +164,21 @@ export const Stats = () => {
           </div>
 
           {/* Stat 3 */}
-          <div className="flex flex-col items-center text-center w-full">
-            <div className="w-14 h-14 rounded-2xl bg-[#0c1a30] border border-white/5 flex items-center justify-center mb-4 shadow-inner">
+          <div className="group flex flex-col items-center text-center w-full p-4 rounded-3xl transition-all duration-300 hover:bg-[#0c1a30]/30 border border-transparent hover:border-white/[0.02]">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-b from-[#0c1a30] to-[#061020] border border-white/[0.06] flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(59,130,246,0.05)] group-hover:scale-110 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
               {stats[2].icon}
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{stats[2].number}</div>
-            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px]">{stats[2].label}</div>
+            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">{stats[2].number}</div>
+            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px] transition-colors duration-300 group-hover:text-slate-300">{stats[2].label}</div>
           </div>
 
           {/* Stat 4 */}
-          <div className="flex flex-col items-center text-center w-full">
-            <div className="w-14 h-14 rounded-2xl bg-[#0c1a30] border border-white/5 flex items-center justify-center mb-4 shadow-inner">
+          <div className="group flex flex-col items-center text-center w-full p-4 rounded-3xl transition-all duration-300 hover:bg-[#0c1a30]/30 border border-transparent hover:border-white/[0.02]">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-b from-[#0c1a30] to-[#061020] border border-white/[0.06] flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(59,130,246,0.05)] group-hover:scale-110 group-hover:border-primary/30 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-300">
               {stats[3].icon}
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2">{stats[3].number}</div>
-            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px]">{stats[3].label}</div>
+            <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">{stats[3].number}</div>
+            <div className="text-slate-400 font-medium text-[13px] sm:text-[14px] transition-colors duration-300 group-hover:text-slate-300">{stats[3].label}</div>
           </div>
         </div>
       </div>
