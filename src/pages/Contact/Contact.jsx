@@ -21,7 +21,7 @@ export const ContactPage = () => {
     { id: 1, icon: <Facebook size={18} />, link: 'https://facebook.com' },
     { id: 2, icon: <Linkedin size={18} />, link: 'https://linkedin.com' },
     { id: 3, icon: <Twitter size={18} />, link: 'https://twitter.com' },
-    { id: 4, icon: <Instagram size={18} />, link: 'https://instagram.com' },
+    { id: 4, icon: <Instagram size={18} />, link: 'https://www.instagram.com/doquad.in?igsh=MXB2ODRrbGhoNzZ4ZA%3D%3D&utm_source=qr' },
   ];
 
   return (
@@ -71,7 +71,7 @@ export const ContactPage = () => {
                 </div>
                 <div>
                   <span className="text-xs text-slate-500 block uppercase font-bold tracking-wider">Call us</span>
-                  <a href="tel:+919876543210" className="hover:text-primary transition-colors">+91 98765 43210</a>
+                  <a href="tel:+919526223034" className="hover:text-primary transition-colors">+91 95262 23034</a>
                 </div>
               </li>
               
@@ -81,7 +81,7 @@ export const ContactPage = () => {
                 </div>
                 <div>
                   <span className="text-xs text-slate-500 block uppercase font-bold tracking-wider">Visit us</span>
-                  <span>Kochi, Kerala, India</span>
+                  <span>Malappuram, Kerala, India</span>
                 </div>
               </li>
             </ul>

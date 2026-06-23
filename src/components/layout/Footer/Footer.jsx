@@ -14,7 +14,7 @@ export const Footer = () => {
     { id: 1, icon: <Facebook size={18} />, link: 'https://facebook.com' },
     { id: 2, icon: <Linkedin size={18} />, link: 'https://linkedin.com' },
     { id: 3, icon: <Twitter size={18} />, link: 'https://twitter.com' },
-    { id: 4, icon: <Instagram size={18} />, link: 'https://instagram.com' },
+    { id: 4, icon: <Instagram size={18} />, link: 'https://www.instagram.com/doquad.in?igsh=MXB2ODRrbGhoNzZ4ZA%3D%3D&utm_source=qr' },
   ];
 
   return (
@@ -100,11 +100,11 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-primary flex-shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-primary transition-colors">+91 98765 43210</a>
+                <a href="tel:+919526223034" className="hover:text-primary transition-colors">+91 95262 23034</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-primary flex-shrink-0 mt-0.5" />
-                <span>Kochi, Kerala, India</span>
+                <span>Malappuram, Kerala, India</span>
               </li>
             </ul>
           </div>

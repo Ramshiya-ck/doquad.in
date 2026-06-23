@@ -5,11 +5,12 @@ import envelopeImg from '../../assets/images/envelope-removebg-preview.png';
 export const CTA = () => {
   return (
     <section className="bg-white pt-16 pb-28 lg:pb-36 px-6 md:px-12 relative overflow-hidden z-10">
-      {/* Container Box */}
-      <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#0a1e3a] via-[#041226] to-[#010712] rounded-[2.5rem] p-10 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-[0_20px_50px_rgba(15,95,253,0.18)] border border-white/[0.08]">
-        {/* Glow decorative blobs */}
-        <div className="absolute top-[-30%] right-[-10%] w-[320px] h-[320px] bg-primary/20 rounded-full filter blur-[70px] pointer-events-none" />
-        <div className="absolute bottom-[-30%] left-[-10%] w-[260px] h-[260px] bg-blue-500/10 rounded-full filter blur-[60px] pointer-events-none" />
+      {/* Glow decorative blobs behind the glassy card */}
+      <div className="absolute top-[20%] left-[20%] w-[320px] h-[320px] bg-primary/25 rounded-full filter blur-[80px] pointer-events-none z-0" />
+      <div className="absolute bottom-[20%] right-[20%] w-[280px] h-[280px] bg-blue-500/15 rounded-full filter blur-[70px] pointer-events-none z-0" />
+      
+      {/* Glassy Container Box */}
+      <div className="max-w-7xl mx-auto bg-gradient-to-br from-[#0a1e3a]/75 via-[#041226]/60 to-[#010712]/75 backdrop-blur-xl rounded-[2.5rem] p-10 md:p-14 text-white relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 shadow-[0_20px_50px_rgba(3,17,39,0.2)] border border-white/[0.1] z-10">
         
         {/* Left Column - Content */}
         <div className="flex flex-col items-start text-left max-w-xl z-10">
