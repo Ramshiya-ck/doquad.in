@@ -18,7 +18,7 @@ export const ContactPage = () => {
 
     const formData = new FormData(e.currentTarget);
     // Web3Forms API parameters
-    formData.append("access_key", "a2a62223-5b4c-46be-b74a-99a3d2be3f38");
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
     formData.append("from_name", "DoQuad Website Contact Form");
 
     try {

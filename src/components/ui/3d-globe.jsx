@@ -1,5 +1,5 @@
-"use client";;
-import React, { useRef, useMemo, useState, useCallback, Suspense } from "react";
+"use client";
+import React, { useRef, useMemo, useState, useCallback, Suspense, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Html, useTexture } from "@react-three/drei";
 import * as THREE from "three";
@@ -45,6 +45,11 @@ function Marker({
   const imageGroupRef = useRef(null);
   const { camera } = useThree();
 
+  // Create static vectors once per component instance to avoid GC overhead inside useFrame
+  const worldPosVec = useRef(new THREE.Vector3());
+  const markerDirVec = useRef(new THREE.Vector3());
+  const cameraDirVec = useRef(new THREE.Vector3());
+
   // Surface position (where the line starts)
   const surfacePosition = useMemo(() => {
     return latLngToVector3(marker.lat, marker.lng, radius * 1.001);
@@ -61,21 +66,23 @@ function Marker({
   useFrame(() => {
     if (!imageGroupRef.current) return;
 
-    // Get the world position of the image (the positioned element)
-    const worldPos = new THREE.Vector3();
-    imageGroupRef.current.getWorldPosition(worldPos);
+    // Get the world position without allocating a new vector instance on every frame
+    imageGroupRef.current.getWorldPosition(worldPosVec.current);
 
     // Direction from globe center (0,0,0) to marker
-    const markerDirection = worldPos.clone().normalize();
+    markerDirVec.current.copy(worldPosVec.current).normalize();
 
     // Direction from globe center to camera
-    const cameraDirection = camera.position.clone().normalize();
+    cameraDirVec.current.copy(camera.position).normalize();
 
     // Dot product: positive means facing camera, negative means behind
-    const dot = markerDirection.dot(cameraDirection);
+    const dot = markerDirVec.current.dot(cameraDirVec.current);
 
     // Show marker only if it's facing the camera (stricter threshold)
-    setIsVisible(dot > 0.1);
+    const nextVisible = dot > 0.1;
+    if (isVisible !== nextVisible) {
+      setIsVisible(nextVisible);
+    }
   });
 
   const handlePointerEnter = useCallback(() => {
@@ -180,19 +187,11 @@ function RotatingGlobe({
     }
   }, [earthTexture, bumpTexture]);
 
-  // Create geometries
-  const geometry = useMemo(() => {
-    return new THREE.SphereGeometry(config.radius, 64, 64);
-  }, [config.radius]);
-
-  const wireframeGeometry = useMemo(() => {
-    return new THREE.SphereGeometry(config.radius * 1.002, 32, 16);
-  }, [config.radius]);
-
   return (
     <group ref={groupRef}>
-      {/* Main globe mesh with Earth texture */}
-      <mesh geometry={geometry}>
+      {/* Main globe mesh with Earth texture. Let R3F manage geometry lifecycle automatically */}
+      <mesh>
+        <sphereGeometry args={[config.radius, 64, 64]} />
         <meshStandardMaterial
           map={earthTexture}
           bumpMap={bumpTexture}
@@ -202,7 +201,8 @@ function RotatingGlobe({
       </mesh>
       {/* Wireframe overlay */}
       {config.showWireframe && (
-        <mesh geometry={wireframeGeometry}>
+        <mesh>
+          <sphereGeometry args={[config.radius * 1.002, 32, 16]} />
           <meshBasicMaterial color={config.wireframeColor} wireframe transparent opacity={0.08} />
         </mesh>
       )}
@@ -264,6 +264,13 @@ function Atmosphere({
     });
   }, [color, intensity, fresnelPower]);
 
+  // Clean up resources on unmount to prevent GPU memory leaks
+  useEffect(() => {
+    return () => {
+      atmosphereMaterial.dispose();
+    };
+  }, [atmosphereMaterial]);
+
   return (
     <mesh scale={[scale, scale, scale]}>
       <sphereGeometry args={[radius, 64, 32]} />
@@ -281,7 +288,7 @@ function Scene({
   const { camera } = useThree();
 
   // Set initial camera position (pulled back to accommodate markers)
-  React.useEffect(() => {
+  useEffect(() => {
     camera.position.set(0, 0, config.radius * 3.5);
     camera.lookAt(0, 0, 0);
   }, [camera, config.radius]);
