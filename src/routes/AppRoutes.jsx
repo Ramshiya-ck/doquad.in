@@ -5,8 +5,7 @@ import About from '../pages/About/About';
 import ServicesPage from '../pages/Services/Services';
 import PortfolioPage from '../pages/Portfolio/Portfolio';
 import ProcessPage from '../pages/Process/Process';
-import BlogPage from '../pages/Blog/Blog';
-import NotFound from '../pages/NotFound/NotFound';
+
 
 export const AppRoutes = ({ lastPath }) => {
   const location = useLocation();
@@ -23,9 +22,7 @@ export const AppRoutes = ({ lastPath }) => {
       <Route path="/services" element={<ServicesPage />} />
       <Route path="/portfolio" element={<PortfolioPage />} />
       <Route path="/process" element={<ProcessPage />} />
-      <Route path="/blog" element={<BlogPage />} />
       <Route path="/contact" element={null} />
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
