@@ -14,8 +14,8 @@ export const Navbar = () => {
     { name: 'Services', path: '/services' },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'About Us', path: '/about' },
-    { name: 'Process', path: '#process' }, // Can be hash links or paths
-    { name: 'Blog', path: '#blog' },
+    { name: 'Process', path: '/process' },
+    { name: 'Blog', path: '/about#blog' },
     { name: 'Contact', path: '/contact' }
   ];
 
@@ -38,6 +38,26 @@ export const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLinkClick = (e, item) => {
+    if (item.path.startsWith('#')) {
+      e.preventDefault();
+      const element = document.getElementById(item.path.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (item.path.includes('#')) {
+      const [path, hash] = item.path.split('#');
+      if (location.pathname === path) {
+        e.preventDefault();
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+    handleNavClick(item.name);
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -55,16 +75,7 @@ export const Navbar = () => {
               <a
                 key={item.name}
                 href={item.path}
-                onClick={(e) => {
-                  if (item.path.startsWith('#')) {
-                    e.preventDefault();
-                    const element = document.getElementById(item.path.substring(1));
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                  handleNavClick(item.name);
-                }}
+                onClick={(e) => handleLinkClick(e, item)}
                 className={`relative font-medium text-[15px] transition-all duration-300 py-2 group ${isActive ? 'text-primary' : 'text-slate-600 hover:text-primary'}`}
               >
                 {item.name}
@@ -125,16 +136,7 @@ export const Navbar = () => {
               <a
                 key={item.name}
                 href={item.path}
-                onClick={(e) => {
-                  if (item.path.startsWith('#')) {
-                    e.preventDefault();
-                    const element = document.getElementById(item.path.substring(1));
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                  handleNavClick(item.name);
-                }}
+                onClick={(e) => handleLinkClick(e, item)}
                 className={`font-medium text-lg py-2 border-b border-slate-100 flex justify-between items-center ${isActive ? 'text-primary font-semibold' : 'text-slate-600 hover:text-primary'}`}
               >
                 {item.name}
