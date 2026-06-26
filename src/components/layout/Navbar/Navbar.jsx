@@ -15,7 +15,7 @@ export const Navbar = () => {
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'About Us', path: '/about' },
     { name: 'Process', path: '/process' },
-    { name: 'Blog', path: '/about#blog' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }
   ];
 
